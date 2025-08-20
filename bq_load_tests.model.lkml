@@ -20,4 +20,9 @@ include: "*.view.lkml"                # include all views in the views/ folder i
 # }
 
 
-explore: basic_order_items {}
+explore: basic_order_items {
+  access_filter: {
+    field: basic_order_items.product_id
+    user_attribute: product
+  }
+}
