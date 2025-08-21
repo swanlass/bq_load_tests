@@ -25,4 +25,26 @@ explore: basic_order_items {
     field: basic_order_items.product_id
     user_attribute: product
   }
+
+  join: products {
+    sql_on: ${basic_order_items.product_id} = ${products.id} ;;
+    type: full_outer
+    relationship: many_to_one
+  }
+
+  join: self_join {
+    view_label: "full_outer_order_items"
+    from: basic_order_items
+    sql_on: ${basic_order_items.order_id} = ${self_join.order_id} ;;
+    type: full_outer
+    relationship: one_to_one
+  }
+
+  join: cross_join_5 {
+    view_label: "cross_join_order_items"
+    from: basic_order_items
+    # sql_on: ${basic_order_items.order_id} = ${self_join_5.order_id} ;;
+    type: cross
+    relationship: many_to_many
+  }
 }
